@@ -1,0 +1,5 @@
+span {    background: linear-gradient(#D6D6D6, #BFBFBF, #D6D6D6);    padding: 7px 35px 7px 32px;    margin-left: -4px;}
+li {    display: inline-block;    position: relative;}
+li:not(:last-child)::before,li:not(:last-child)::after {    content: '';    z-index: 1;    position: absolute;    width: 7px;    height: 16px;    background-color: #fff;    left: 102px;}
+span:hover {    background: linear-gradient(#9CDA6F, #67C622, #9CDA6F);    color: #fff;}
+ul {    list-style-type: none;    padding: 0px;}

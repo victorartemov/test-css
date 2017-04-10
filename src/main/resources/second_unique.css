@@ -1,0 +1,3 @@
+.cute-bar {    text-align: center;    margin-top: 40px;}
+li::before {    top: 9px;    transform: skew(-23deg);}
+li::after {    top: -7px;    transform: skew(23deg);}

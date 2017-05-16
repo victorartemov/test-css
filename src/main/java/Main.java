@@ -6,20 +6,20 @@ import java.util.*;
  */
 public class Main {
 
-    private static String firstFile = "C:\\Users\\Виктор\\Desktop\\CSS Parsing\\src\\main\\resources\\first.css";
-    private static String secondFile = "C:\\Users\\Виктор\\Desktop\\CSS Parsing\\src\\main\\resources\\second.css";
+    private static String firstFile = "C:\\Users\\Viktor_Artemov\\Desktop\\WORK\\test-css\\src\\main\\resources\\first.css";
+    private static String secondFile = "C:\\Users\\Viktor_Artemov\\Desktop\\WORK\\test-css\\src\\main\\resources\\second.css";
 
-    private static String firstFileFormatted = "C:\\Users\\Виктор\\Desktop\\CSS Parsing\\src\\main\\resources\\first_formatted.css";
-    private static String secondFileFormatted = "C:\\Users\\Виктор\\Desktop\\CSS Parsing\\src\\main\\resources\\second_formatted.css";
+    private static String firstFileFormatted = "C:\\Users\\Viktor_Artemov\\Desktop\\WORK\\test-css\\src\\main\\resources\\first_formatted.css";
+    private static String secondFileFormatted = "C:\\Users\\Viktor_Artemov\\Desktop\\WORK\\test-css\\src\\main\\resources\\second_formatted.css";
 
-    private static String firstUnique = "C:\\Users\\Виктор\\Desktop\\CSS Parsing\\src\\main\\resources\\first_unique.css";
-    private static String secondUnique = "C:\\Users\\Виктор\\Desktop\\CSS Parsing\\src\\main\\resources\\second_unique.css";
-    private static String common = "C:\\Users\\Виктор\\Desktop\\CSS Parsing\\src\\main\\resources\\common.css";
+    private static String firstUnique = "C:\\Users\\Viktor_Artemov\\Desktop\\WORK\\test-css\\src\\main\\resources\\first_unique.css";
+    private static String secondUnique = "C:\\Users\\Viktor_Artemov\\Desktop\\WORK\\test-css\\src\\main\\resources\\second_unique.css";
+    private static String common = "C:\\Users\\Viktor_Artemov\\Desktop\\WORK\\test-css\\src\\main\\resources\\common.css";
 
     public static void main(String[] args) {
-        formatFiles();
-//        showStylechunksFromFile(firstFileFormatted);
-//        showStylechunksFromFile(secondFileFormatted);
+        //formatFiles();
+        //showStylechunksFromFile(firstFileFormatted);
+        //showStylechunksFromFile(secondFileFormatted);
         showDifferentAndCommonStyleChunks(firstFileFormatted, secondFileFormatted);
     }
 
@@ -67,11 +67,14 @@ public class Main {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
             String s;
             StringBuffer stringBuffer = new StringBuffer();
+
             while ((s = bufferedReader.readLine()) != null) {
                 if (!s.isEmpty()) {
                     stringBuffer.append(s);
                 } else {
-                    styleChunks.add(stringBuffer.toString());
+                    if (stringBuffer.length() != 0) {
+                        styleChunks.add(stringBuffer.toString());
+                    }
                     stringBuffer.setLength(0);
                 }
             }
@@ -105,7 +108,7 @@ public class Main {
         for (String firstFileChunk : firstFileStyleChunks) {
             found = false;
             for (String secondFileChunk : secondFileStyleChunks) {
-                if (secondFileChunk.equals(firstFileChunk)) {
+                if (secondFileChunk.replaceAll("[\\s+;]", "").equalsIgnoreCase(firstFileChunk.replaceAll("[\\s+;]", ""))) {
                     commonStyleChunks.add(firstFileChunk);
                     found = true;
                 }
@@ -119,7 +122,7 @@ public class Main {
         for (String secondFileChunk : secondFileStyleChunks) {
             found = false;
             for (String firstFileChunk : firstFileStyleChunks) {
-                if (firstFileChunk.equals(secondFileChunk)) {
+                if (firstFileChunk.replaceAll("[\\s+;]", "").equalsIgnoreCase(secondFileChunk.replaceAll("[\\s+;]", ""))) {
                     found = true;
                 }
             }
